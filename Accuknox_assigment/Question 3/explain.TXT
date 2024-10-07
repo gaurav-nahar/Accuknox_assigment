@@ -1,0 +1,28 @@
+#### Expected Output
+
+When the script is run, the following output is expected:
+
+```
+Starting transaction...
+Signal handler executed
+Signal sent during transaction
+Fake database content: ['Object created in signal handler']
+```
+
+#### Breakdown of Output Messages:
+
+1. **"Starting transaction..."**:
+   - This message indicates that the transaction block has started. All operations following this line are part of a single transaction.
+
+2. **"Signal handler executed"**:
+   - This message is printed from within the `signal_handler` function. It confirms that the signal has been successfully triggered and the handler executed. The handler appends a message to `fake_database`, indicating that an object has been created.
+
+3. **"Signal sent during transaction"**:
+   - This message appears after sending the signal (`simple_signal.send(sender=None)`). It shows that the signal was sent while still within the transaction block.
+
+4. **"Fake database content: ['Object created in signal handler']"**:
+   - This output displays the content of the `fake_database` list, which now contains a message from the signal handler. It confirms that the signal handler function was executed successfully, and the expected data was added to the fake database.
+
+#### Conclusion
+
+The output of the script demonstrates the proper functioning of Django's signals and transactions. By configuring settings manually and using a fake database, the script effectively illustrates how data can be manipulated within a transaction and how signals can be used to trigger specific actions in response to events.
